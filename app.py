@@ -76,8 +76,8 @@ def main():
 if __name__ == "__main__":
     if len(sys.argv) > 1 and sys.argv[1] == "daemon":
         import daemon
-        log = open('tesseract-web-service.log', 'a+')
         pwd = os.path.dirname(os.path.realpath(__file__))
+        log = open(os.path.join(pwd, 'tesseract-web-service.log'), 'a+')
         with daemon.DaemonContext(stdout=log, stderr=log,
             working_directory=pwd):
             main()
