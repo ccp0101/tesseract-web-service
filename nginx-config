@@ -1,0 +1,15 @@
+server {
+   listen      173.212.221.150:80;
+   server_name tesseract.ccp.li;
+   access_log  /var/log/nginx/tesseract.ccp.li.access_log;
+   error_log   /var/log/nginx/tesseract.ccp.li.error_log warn;
+ 
+   location / {
+        proxy_pass  http://127.0.0.1:8010;
+        proxy_next_upstream error timeout invalid_header http_500 http_502 http_503 http_504;
+        proxy_redirect off;
+        proxy_buffering off;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+}
