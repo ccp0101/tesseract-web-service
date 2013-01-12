@@ -69,8 +69,7 @@ application = tornado.web.Application([
 
 
 def main():
-    http_server = tornado.httpserver.HTTPServer(application)
-    http_server.listen(8010)
+    application.listen(8010, address='127.0.0.1')
     tornado.ioloop.IOLoop.instance().start()
 
 
